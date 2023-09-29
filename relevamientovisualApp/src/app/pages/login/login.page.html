@@ -1,0 +1,52 @@
+<ion-content [fullscreen]="true">
+  <div class="container">
+    <h1 class="ion-text-center title">Relevamiento Visual App</h1>
+    <br>
+    <ion-card id="NongModel" class="ion-text-center card" color="dark">
+      <ion-card-header>
+        <ion-card-title class="title">Ingrese sus datos</ion-card-title>      
+      </ion-card-header>
+      <form [formGroup]="formRegistro" class="form">
+                
+        <ion-input class="input" label-placement="floating" mode="md" fill="outline" label="Correo" type="email" placeholder="Ingrese su correo electrónico" formControlName="email" ></ion-input>
+        <ion-text *ngIf="formRegistro.controls['email'].errors?.['required'] && formRegistro.controls['email'].touched" color="danger">Debe ingresar un email</ion-text>
+        
+        <hr>
+  
+        <ion-input class="input" label-placement="floating" mode="md" fill="outline" label="Contraseña" type="password" placeholder="Ingrese la contraseña" formControlName="pass"></ion-input>
+  
+        <ion-text *ngIf="formRegistro.controls['pass'].errors?.['required'] && formRegistro.controls['pass'].touched" color="danger">Debe ingresar una contraseña</ion-text>
+        <ion-text *ngIf="formRegistro.controls['pass'].errors?.['minlength']" color="danger">Debe tener 6 caracteres mínimo</ion-text>
+        
+        <hr>
+        
+        <ion-button shape="round" [disabled]="formRegistro.invalid" class="ion-text-center login-button" (click)="login()">Ingresar</ion-button>
+        
+        <hr>
+        <hr>
+        <div class="ingreso-rapido">
+  
+          <div class="container-perfiles">
+
+            <button class="boton-imagen" (click)="logueoRapido('admin@admin.com','123456')">
+             Admin
+            </button>
+
+            <button class="boton-imagen" (click)="logueoRapido('invitado@invitado.com','222222')">
+              Invitado
+            </button>
+            
+            <button class="boton-imagen" (click)="logueoRapido('juan@gmail.com','solano823')">
+              Alumno
+            </button>
+          </div>
+
+        </div>
+
+      </form>
+      
+    </ion-card>
+  </div>
+  
+  
+</ion-content>

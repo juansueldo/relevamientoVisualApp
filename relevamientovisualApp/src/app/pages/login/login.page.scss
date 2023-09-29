@@ -1,0 +1,70 @@
+ion-content{
+    --background: #41337A;
+}
+
+.ingreso-rapido{
+    position: absolute;
+    bottom: 10px;
+    border: 3px solid #D81E5B;
+    border-radius: 8px;
+    left: 0;
+    right: 0;
+    padding: 10px 10px; 
+    margin: 10px;
+}
+.card{
+    margin-top: 80px;
+    background: rgba(216, 30, 91, 0.31);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    border: 1px solid rgba(216, 30, 91, 0.18);
+    height: 770px;
+}
+.title{
+    color: #5ab8a2 !important;
+    font-weight: 900;
+}
+.container-perfiles{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;    
+}
+.login-button{
+    height: 10vh;
+    --background: #D81E5B;
+}
+.boton-imagen{
+    flex-basis: calc(33.33% - 10px);
+    height: 10vh;
+    background-color: #D81E5B;
+    border-radius: 15px;
+    width: 11vh;   
+
+}
+
+.nombre-perfil{    
+    width: 100%;    
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;    
+    margin: 0;
+    border-radius: 10px;
+    text-align: center !important;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+   
+    margin: 20px;
+    height: 350px;
+    
+}
+.input{
+    color: #5ab8a2;
+    margin-bottom: 40px;
+}

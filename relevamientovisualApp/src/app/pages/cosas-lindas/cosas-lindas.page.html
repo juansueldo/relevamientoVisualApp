@@ -1,0 +1,55 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-tab-button slot="start"  routerLink="/home">
+      <ion-icon name="home-outline"></ion-icon>
+      <ion-label>Principal</ion-label>
+    </ion-tab-button>
+    <ion-tab-button>
+      <ion-title class="title">Cosas lindas</ion-title>
+    </ion-tab-button>
+    <ion-tab-button slot="end" (click)="logout()">
+      <ion-icon name="log-out-outline"></ion-icon>
+      <ion-label>Salir</ion-label>
+    </ion-tab-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="main-container background-image">
+    <div class="contenedor">
+      
+      <div class="spinner" *ngIf="cargando">
+        <ion-spinner name="circular" color="light" color="danger" style="width: 70px;height: 70px;"></ion-spinner>
+      </div>
+
+      <ion-card class="card" *ngFor="let item of cosasLindas; let i = index" data-index="i">
+        <ion-card-header>
+          <ion-card-title class="ion-text-center">{{item.email}}</ion-card-title>
+          <ion-card-subtitle class="ion-text-center">{{item.fecha}} {{item.hora}}</ion-card-subtitle>
+        </ion-card-header>
+        
+        <div class="ion-text-center">
+          <img alt="{{item.nombre}}" src="{{item.path}}" width="70%" height="70%"/>
+        </div>
+      
+        <ion-card-content>
+          <div class="contenedorLikes">            
+            <img *ngIf="item.likes.includes(this.auth.getUserLogged)" src="assets/images/heart-votos.png" alt="votos" width="60%" height="60%" (click)="cambiarLike(item,'-')">
+            <img *ngIf="!item.likes.includes(this.auth.getUserLogged)" src="assets/images/heart-no-votos.png" alt="votos" width="60%" height="60%" (click)="cambiarLike(item,'+')">
+            <ion-label class="numeroLikes">{{item.likes.length}}</ion-label>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+  <div class="footer">
+    <app-navegacion [tabActual]="'lindas'"></app-navegacion>
+  </div>
+</ion-content>
+
+
+<ion-fab slot="fixed" horizontal="center" vertical="bottom" style="margin-bottom: 60px;">
+  <ion-fab-button  (click)="nuevaFoto()">
+    <img class="camara" src="../../../assets/buttons/camara.png"  alt="agregar-foto">
+  </ion-fab-button>
+</ion-fab>

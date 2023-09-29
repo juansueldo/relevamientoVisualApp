@@ -1,0 +1,29 @@
+ion-content {
+    --background: #41337A;
+  }
+  ion-toolbar{
+    --background: rgba(216, 30, 91, 0.31);
+  }
+  ion-tab-button{
+    --background: rgba(105, 49, 68, 0);
+    --color: #5ab8a2;
+  }
+  .title{
+    color: #5ab8a2;
+    font-weight: 900;
+    font-size: 16px;
+  }
+  
+  ion-fab-button{
+    --background: rgba(216, 30, 91, 0.31);
+  }
+  .logut-button {
+    --color: #5ab8a2; /* Color del texto */
+    --background:#D81E5B;
+    font-size: 9px;
+    height: 20px;
+  }
+  .camara{
+    margin-bottom: 10px;
+    height: 30px;
+  }

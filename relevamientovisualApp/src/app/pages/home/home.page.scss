@@ -1,0 +1,46 @@
+
+ion-content {
+  --background: #41337A;
+}
+ion-toolbar{
+  --background: rgba(216, 30, 91, 0.31);
+}
+ion-tab-button{
+  --background: rgba(105, 49, 68, 0);
+  --color: #5ab8a2;
+}
+.title{
+  color: #5ab8a2;
+  font-weight: 900;
+  font-size: 16px;
+}
+
+/* Estilos para el botón de cerrar sesión en el header */
+.logut-button {
+  --color: #41337A; /* Color del texto */
+  --background:#D81E5B;
+  font-size: 9px;
+  height: 20px;
+}
+
+/* Estilos para los botones "Cosas Lindas" y "Cosas Feas" */
+ion-button.expand {
+  width: 100%; /* Ocupar toda la anchura disponible */
+  height: 100%; /* Ocupar toda la altura disponible */
+}
+
+/* Estilos para las tarjetas */
+.cosas-lindas, .cosas-feas {
+  margin: 10px;
+  height: 350px;
+}
+
+/* Estilos para las imágenes en las tarjetas */
+img {
+  //max-width: 100%; /* Ancho máximo de la imagen */
+  object-fit: cover;
+  height: 180px;
+  
+}
+
+

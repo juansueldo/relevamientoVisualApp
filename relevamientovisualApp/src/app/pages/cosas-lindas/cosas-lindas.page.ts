@@ -30,8 +30,7 @@ export class CosasLindasPage implements OnInit {
 
   async nuevaFoto(){
     this.cargando = true;
-    await this.img.subirImagen('lindas').then((res) => {
-      console.log('subio');      
+    await this.img.subirImagen('lindas').then((res) => {      
       if(res){
         this.cargando = false
       }

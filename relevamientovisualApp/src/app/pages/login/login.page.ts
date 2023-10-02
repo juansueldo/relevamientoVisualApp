@@ -32,6 +32,10 @@ export class LoginPage implements OnInit {
             name: res.user.displayName,
             email: res.user.email
           }
+          console.log(res.user.email);
+          this.auth.saveLog(res.user.email);
+        
+ 
           this.utilsSvc.setElementInLocalstorage('user',user)
           this.utilsSvc.routerLink('/home')
           this.router.navigate(['/home'], { queryParams: user });

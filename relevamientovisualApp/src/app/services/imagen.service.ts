@@ -14,14 +14,14 @@ export class ImagenService {
   
   constructor(private storage : AngularFireStorage, private auth : AuthService,private db : DbService) { }
 
-  async subirImagen(path: string){
+  async subirImagen(path: string, email: string){
     let date = new Date();
     let id = date.getTime();
     
     const foto : any = {
       id,
       path:"",
-      email:this.auth.mailLogueado,
+      email: email,
       hora:`${date.getHours()}:${date.getMinutes()}`,
       fecha:`${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`,
       likes:[],
@@ -33,20 +33,20 @@ export class ImagenService {
       quality: 100,
       webUseInput: true
     })
-    let name = `${foto.email}-${id}`;
-
+    let nombre = `${foto.email}-${id}`;
+    foto.nombre = nombre;
     
-    const res = await this.uploadImage(nuevaFoto, path, foto.hora);
-    console.log(res);
+    const res = await this.uploadImage(nuevaFoto, path, nombre);
+    
     const storage = getStorage();
 
-    const storageRef = ref(storage,name);
-
-    const imageRef = this.storage.ref(`${name}`);
-
+    const storageRef = ref(storage,nombre);
+    const imageRef = this.storage.ref(`${nombre}`);
+    
     const uploadTask = await imageRef.putString(nuevaFoto.dataUrl!, 'data_url');
     const downloadUrl = await imageRef.getDownloadURL().toPromise();
-
+    console.log(uploadTask);
+    console.log(foto);
     //console.log(downloadUrl);
     foto.path = downloadUrl;
     this.db.guardarObj(foto);  

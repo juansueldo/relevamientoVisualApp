@@ -37,4 +37,15 @@ export class AuthService {
   mailLogueado(){
     return this.auth.authState;
   }
+  saveLog(email : string){
+    let date = new Date();
+    const fullDate = date.toLocaleDateString() + '-' + date.toLocaleTimeString();
+   
+    let logs = this.db.collection('users');
+    logs.doc().set({
+      email: email,
+      fecha_ingreso: fullDate
+    })
+
+  }
 }

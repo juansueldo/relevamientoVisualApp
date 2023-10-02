@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { DbService } from 'src/app/services/db.service';
 import { ImagenService } from 'src/app/services/imagen.service';
-
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-cosas-lindas',
   templateUrl: './cosas-lindas.page.html',
@@ -12,8 +12,9 @@ import { ImagenService } from 'src/app/services/imagen.service';
 export class CosasLindasPage implements OnInit {
   cargando : boolean = true;
   cosasLindas : any = [];
+  nameTitle: string;
   
-  constructor(private img : ImagenService,private db : DbService,public auth : AuthService, private router: Router) { 
+  constructor(private route: ActivatedRoute,private img : ImagenService,private db : DbService,public auth : AuthService, private router: Router) { 
     this.db.traerCosas('lindas').subscribe(res => {
       console.log(res);
       this.cosasLindas = res.sort(function(a, b) {
@@ -26,11 +27,16 @@ export class CosasLindasPage implements OnInit {
   }
 
   ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      const email = params['email'];
+      this.nameTitle = email;
+    });
   }
 
   async nuevaFoto(){
     this.cargando = true;
-    await this.img.subirImagen('lindas');
+    console.log(this.nameTitle);
+    await this.img.subirImagen('lindas', this.nameTitle);
   }
 
   cambiarLike(foto : any,signo : string){

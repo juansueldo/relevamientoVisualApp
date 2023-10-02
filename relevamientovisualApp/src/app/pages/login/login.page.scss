@@ -5,7 +5,7 @@ ion-content{
 .ingreso-rapido{
     position: absolute;
     bottom: 10px;
-    border: 3px solid #D81E5B;
+    border: 3px solid #5ab8a2;
     border-radius: 8px;
     left: 0;
     right: 0;
@@ -36,12 +36,12 @@ ion-content{
 }
 .login-button{
     height: 10vh;
-    --background: #D81E5B;
+    --background: #5ab8a2;
 }
 .boton-imagen{
     flex-basis: calc(33.33% - 10px);
     height: 10vh;
-    background-color: #D81E5B;
+    background-color: #5ab8a2;
     border-radius: 15px;
     width: 11vh;   
 

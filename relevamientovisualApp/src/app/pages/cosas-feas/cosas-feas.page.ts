@@ -11,13 +11,13 @@ import { UtilsService } from 'src/app/services/utils.service';
   styleUrls: ['./cosas-feas.page.scss'],
 })
 export class CosasFeasPage implements OnInit {
-
   cargando : boolean = true;
-  cosasFeas : any = []
+  cosasFeas : any = [];
   nameTitle: string;
-  constructor(private utils: UtilsService, private img : ImagenService,private db : DbService,public auth : AuthService,private router: Router) { 
+  
+  constructor(private utils: UtilsService,private img : ImagenService,private db : DbService,public auth : AuthService, private router: Router) { 
     this.db.traerCosas('feas').subscribe(res => {
-      //console.log(res);
+      console.log(res);
       this.cosasFeas = res.sort(function(a, b) {
         return b.id - a.id;
       });
@@ -37,7 +37,7 @@ export class CosasFeasPage implements OnInit {
   }
 
   cambiarLike(foto : any,signo : string){
-    this.cargando = true;
+    this.cargando = true
     if(signo == '+'){
       //aca agrega el like
       foto.likes.push(this.nameTitle)

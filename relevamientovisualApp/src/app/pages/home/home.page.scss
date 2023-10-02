@@ -1,6 +1,7 @@
 
 ion-content {
   --background: #41337A;
+  height: 100vh;
 }
 ion-toolbar{
   --background: rgba(216, 30, 91, 0.31);
@@ -31,8 +32,7 @@ ion-button.expand {
 
 /* Estilos para las tarjetas */
 .cosas-lindas, .cosas-feas {
-  margin: 10px;
-  height: 350px;
+  height: 50%;
 }
 
 /* Estilos para las imágenes en las tarjetas */

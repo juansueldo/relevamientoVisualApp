@@ -34,7 +34,7 @@ export class AuthService {
   logout(){
     return this.auth.signOut();
   }
-  getUserLogged(){
+  mailLogueado(){
     return this.auth.authState;
   }
 }

@@ -15,7 +15,7 @@ export class MisFotosPage implements OnInit {
   usuario : any = '';
 
   constructor(private auth : AuthService,private db : DbService, private router: Router) { 
-    this.usuario = this.auth.getUserLogged;
+    this.usuario = this.auth.mailLogueado;
     this.db.traerMisFotos(this.usuario).subscribe(data => {
       this.misFotos = data.sort(function(a,b){
         return b.id - a.id

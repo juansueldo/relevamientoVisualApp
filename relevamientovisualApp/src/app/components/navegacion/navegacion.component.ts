@@ -10,9 +10,9 @@ export class NavegacionComponent  implements OnInit {
   userLogged : any;
 
   constructor(public auth : AuthService) { 
-    this.auth.getUserLogged().subscribe(user =>{      
-      this.userLogged = user      
-    })
+   // this.auth.getUserLogged().subscribe(user =>{      
+      //this.userLogged = user      
+    //})
   }
 
   ngOnInit() {}

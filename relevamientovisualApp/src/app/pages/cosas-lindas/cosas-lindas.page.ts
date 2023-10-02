@@ -30,21 +30,17 @@ export class CosasLindasPage implements OnInit {
 
   async nuevaFoto(){
     this.cargando = true;
-    await this.img.subirImagen('lindas').then((res) => {      
-      if(res){
-        this.cargando = false
-      }
-    });
+    await this.img.subirImagen('lindas');
   }
 
   cambiarLike(foto : any,signo : string){
     this.cargando = true
     if(signo == '+'){
       //aca agrega el like
-      foto.likes.push(this.auth.getUserLogged)
+      foto.likes.push(this.auth.mailLogueado)
     }else if(signo == '-'){
       //aca le saca el like
-      let indice = foto.likes.indexOf(this.auth.getUserLogged)
+      let indice = foto.likes.indexOf(this.auth.mailLogueado)
       foto.likes.splice(indice,1);
     }
     this.db.actualizarObj(foto,foto.id.toString())

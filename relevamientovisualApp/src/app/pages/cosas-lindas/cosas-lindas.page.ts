@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { DbService } from 'src/app/services/db.service';
 import { ImagenService } from 'src/app/services/imagen.service';
 import { ActivatedRoute } from '@angular/router';
+import { UtilsService } from 'src/app/services/utils.service';
 @Component({
   selector: 'app-cosas-lindas',
   templateUrl: './cosas-lindas.page.html',
@@ -14,7 +15,7 @@ export class CosasLindasPage implements OnInit {
   cosasLindas : any = [];
   nameTitle: string;
   
-  constructor(private route: ActivatedRoute,private img : ImagenService,private db : DbService,public auth : AuthService, private router: Router) { 
+  constructor(private utils: UtilsService,private img : ImagenService,private db : DbService,public auth : AuthService, private router: Router) { 
     this.db.traerCosas('lindas').subscribe(res => {
       console.log(res);
       this.cosasLindas = res.sort(function(a, b) {
@@ -27,33 +28,28 @@ export class CosasLindasPage implements OnInit {
   }
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      const email = params['email'];
-      this.nameTitle = email;
-    });
+    this.nameTitle = this.utils.getElementFromLocalStorage('user').email;
   }
 
   async nuevaFoto(){
     this.cargando = true;
-    console.log(this.nameTitle);
-    await this.img.subirImagen('lindas', this.nameTitle);
+    await this.img.subirImagen('lindas', 'lindas', this.utils.getElementFromLocalStorage('user').email);
   }
 
   cambiarLike(foto : any,signo : string){
     this.cargando = true
     if(signo == '+'){
       //aca agrega el like
-      foto.likes.push(this.auth.mailLogueado)
+      foto.likes.push(this.nameTitle)
     }else if(signo == '-'){
       //aca le saca el like
-      let indice = foto.likes.indexOf(this.auth.mailLogueado)
+      let indice = foto.likes.indexOf(this.nameTitle)
       foto.likes.splice(indice,1);
     }
     this.db.actualizarObj(foto,foto.id.toString())
   }
   logout(){
     this.auth.logout();
-    
     this.router.navigateByUrl("/login");
   }
 

@@ -5,9 +5,9 @@
       <ion-label>Principal</ion-label>
     </ion-tab-button>
     <ion-tab-button>
-      <ion-title class="title">Cosas lindas</ion-title>
+      <ion-title class="title">Cosas feas</ion-title>
     </ion-tab-button>
-    <ion-tab-button slot="end" (click)="this.auth.logout">
+    <ion-tab-button slot="end" (click)="logout()">
       <ion-icon name="log-out-outline"></ion-icon>
       <ion-label>Salir</ion-label>
     </ion-tab-button>
@@ -28,13 +28,13 @@
         </ion-card-header>
         
         <div class="ion-text-center">
-          <img alt="{{item.nombre}}" src="{{item.path}}" width="50%" height="50%"/>
+          <img alt="{{item.nombre}}" src="{{item.path}}" width="40%" height="40%"/>
         </div>
       
         <ion-card-content>
           <div class="contenedorLikes">            
-            <img *ngIf="item.likes.includes(this.auth.getUserLogged)" src="assets/images/heart-votos.png" alt="votos" width="60%" height="60%" (click)="cambiarLike(item,'-')">
-            <img *ngIf="!item.likes.includes(this.auth.getUserLogged)" src="assets/images/heart-no-votos.png" alt="votos" width="60%" height="60%" (click)="cambiarLike(item,'+')">
+            <img *ngIf="item.likes.includes({nameTitle})" src="../../../assets/buttons/me-gusta.png" alt="votos" width="50px" height="50px" (click)="cambiarLike(item,'-')">
+            <img *ngIf="!item.likes.includes({nameTitle})" src="../../../assets/buttons/no-me-gusta.png" alt="votos" width="50px" height="50px" (click)="cambiarLike(item,'+')">
             <ion-label class="numeroLikes">{{item.likes.length}}</ion-label>
           </div>
         </ion-card-content>

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import {AngularFirestore} from '@angular/fire/compat/firestore';
-import {getAuth, updateProfile} from "firebase/auth"; 
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { getAuth, updateProfile } from "firebase/auth";
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -34,8 +35,9 @@ export class AuthService {
   logout(){
     return this.auth.signOut();
   }
-  mailLogueado(){
-    return this.auth.authState;
+  mailLogueado() {
+    return this.auth.authState
+      .pipe(map(user => user ? user.email : null)); // Mapea para devolver el correo electrónico si está autenticado o null si no lo está
   }
   saveLog(email : string){
     let date = new Date();

@@ -14,12 +14,13 @@ export class ImagenService {
   
   constructor(private storage : AngularFireStorage, private auth : AuthService,private db : DbService) { }
 
-  async subirImagen(path: string, email: string){
+  async subirImagen(path: string,tipo: string, email: string){
     let date = new Date();
     let id = date.getTime();
     
     const foto : any = {
       id,
+      tipo: tipo,
       path:"",
       email: email,
       hora:`${date.getHours()}:${date.getMinutes()}`,

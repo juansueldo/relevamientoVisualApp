@@ -37,7 +37,7 @@ export class LoginPage implements OnInit {
         
  
           this.utilsSvc.setElementInLocalstorage('user',user)
-          this.utilsSvc.routerLink('/home')
+          //this.utilsSvc.routerLink('/home')
           this.router.navigate(['/home'], { queryParams: user });
           
           

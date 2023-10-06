@@ -14,6 +14,7 @@ export class CosasFeasPage implements OnInit {
   cargando : boolean = true;
   cosasFeas : any = [];
   nameTitle: string;
+  voto: boolean = false;
   
   constructor(private utils: UtilsService,private img : ImagenService,private db : DbService,public auth : AuthService, private router: Router) { 
     this.db.traerCosas('feas').subscribe(res => {
@@ -28,18 +29,21 @@ export class CosasFeasPage implements OnInit {
   }
 
   ngOnInit() {
-    this.nameTitle = this.utils.getElementFromLocalStorage('user').email;
+    this.auth.mailLogueado().subscribe(
+      user=>{
+        this.nameTitle = user;
+      }
+    )
   }
 
   async nuevaFoto(){
     this.cargando = true;
-    await this.img.subirImagen('feas', 'feas', this.utils.getElementFromLocalStorage('user').email);
+    await this.img.subirImagen('feas', 'feas', this.nameTitle);
   }
 
   cambiarLike(foto : any,signo : string){
     this.cargando = true
     if(signo == '+'){
-      //aca agrega el like
       foto.likes.push(this.nameTitle)
     }else if(signo == '-'){
       //aca le saca el like
@@ -47,6 +51,15 @@ export class CosasFeasPage implements OnInit {
       foto.likes.splice(indice,1);
     }
     this.db.actualizarObj(foto,foto.id.toString())
+  }
+  emitioVoto(foto: any){
+    if(foto.likes.includes(this.nameTitle)){
+      this.voto = false;
+    }
+    else{
+      this.voto = true;
+    }
+    return this.voto;
   }
   logout(){
     this.auth.logout();
